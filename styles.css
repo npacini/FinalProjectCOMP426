@@ -1,392 +1,72 @@
-#login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.backgroundIMG{
   height: 100vh;
-  background: #F7F7F7;
-}
-#login .login-card {
-  background: #fff;
-  width: 24rem;
-  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
-}
-#login .login-card .card-title {
-  background-color: #4B9CD3;
-  padding: 2rem;
-}
-#login .login-card .card-title h1 {
-  color: #fff;
-  text-align: center;
-  font-size: 1.2rem;
-}
-#login .login-card .content {
-  padding: 3rem 2.5rem 5rem;
-}
-#login .login-card #email, #login .login-card #password {
-  display: block;
-  width: 100%;
-  font-size: 1rem;
-  margin-bottom: 1.75rem;
-  padding: 0.25rem 0;
-  border: none;
-  border-bottom: 1px solid #dbdbdb;
-  transition: all .5s;
-}
-#login .login-card #email:hover, #login .login-card #password:hover {
-  border-color: #7a7a7a;
-}
-#login .login-card #email:active, #login .login-card #email:focus, #login .login-card #password:active, #login .login-card #password:focus {
-  border-color: #4B9CD3;
-}
-#login .login-card .checkbox {
-  color: #b5b5b5;
-  font-size: 0.8rem;
-}
-#login .login-card .checkbox span {
-  margin-left: 0.5rem;
-}
-#login .login-card a {
-  font-size: 0.8rem;
-}
-#login .login-card .options {
-  color: #b5b5b5;
-  margin-bottom: 1.5rem;
-}
-#login .login-card button {
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #4B9CD3;
-  border-radius: 4rem;
-  display: block;
-  width: 100%;
-  background: transparent;
-  border: 2px solid #4B9CD3;
-  padding: 0.9rem 0 1.1rem;
-  transition: color .5s, border-color .5s;
-}
-#login .login-card button:hover, #login .login-card button:focus {
-  color: #13294B;
-  border-color: #13294B;
-}
-#login .login-card button:active {
-  transform: translateY(1px);
+  width: 100vw;
 }
 
-label {
-  cursor: pointer;
-}
-
-.regular-checkbox {
-  display: none;
-}
-
-.regular-checkbox + label {
-  background-color: #fafafa;
-  border: 1px solid #dbdbdb;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  padding: 7px;
-  border-radius: 3px;
-  display: inline-block;
+.login-card{
   position: relative;
-}
-
-.regular-checkbox:checked + label {
-  background-color: #e9ecee;
-}
-
-.regular-checkbox:checked + label:after {
-  content: '\2714';
-  font-size: 11px;
-  position: absolute;
-  top: 0;
-  left: 3px;
-  color: #b5b5b5;
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-
-h1 {
-  text-align: center;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 4vw;
-}
-
-.title{
-  width:100vw;
-  height:20vh;
-  padding-top: 2%;
-  /*background-color:rgb(193, 254, 230);*/
-}
-.left{
-  width: 8vw;
-  height: 25vw;
-  margin-top: 8vh;
-  text-align: center;
-  position: relative;
-  float: left;
-}
-.left:hover{
-  background-color:rgb(235, 235, 235);
-  cursor: pointer;
-}
-
-.left:active{
-  background-color:rgb(220, 220, 220);
-}
-
-.tweetBox{
-  width: 20vw;
-  height: 25vw;
-  margin-top: 8vh;
-  margin-left: .5vw;
-  margin-right: .5vw;
-  position: relative;
-  float: left;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 10px 0 rgba(0, 0, 0, 0.3);
-}
-.tweetBody{
-  width: 100%;
-  height: 80%;
-  float: top;
-  border-radius: 10px;
-  border-bottom: solid rgb(200, 200, 200) 1px;
-
-}
-.tweetBottom{
-  width: 100%;
-  height: 20%;
-  float: bottom;
-  border-radius: 8px;
-  /*border-top: solid rgb(200, 200, 200) 1px;*/
-  text-align: center;
-  padding-top: 1%;
-}
-
-.right{
-  /*border: solid purple 3px;*/
-  width: 8vw;
-  height: 25vw;
-  margin-top: 8vh;
-  position: relative;
-  float: right;
-  align-content: center;
-}
-
-.right:hover{
-  background-color:rgb(235, 235, 235);
-  cursor: pointer;
-}
-
-.right:active{
-  background-color:rgb(220, 220, 220);
-}
-
-.back{
-  margin-top: 20vh;
-  margin-left: 1vw;
-  width: 2vw;
-  height: 4vw;
-}
-
-.next{
-  margin-top: 20vh;
-  margin-left: 2.75vw;
-  width: 2vw;
-  height: 4vw;
-}
-
-.like{
-  width: 2.2vw;
-  height: 2vw;
-  float: center;
-  margin-top: 1%;
-}
-.like:hover{
-  cursor: pointer;
-}
-
-.rt{
-  width: 2.2vw;
-  height: 2vw;
-  float: right;
-  margin-right: 15%;
-  margin-top: 1%;
-}
-.rt:hover{
-  cursor: pointer;
-}
-
-.reply{
-  width: 2.2vw;
-  height: 2vw;
-  float: left;
-  margin-left: 15%;
-  margin-top: 1%;
-}
-.reply:hover{
-  cursor: pointer;
-}
-
-.trash{
-  position: absolute;
-  bottom: 0;
-  width: 1.8vw;
-  height: 2vw;
-  margin-bottom: 28%;
-  margin-left: 1%;
-}
-.trash:hover{
-  cursor: pointer;
-}
-.edit{
-  position: absolute;
-  float: right;
-  bottom: 0;
-  width: 2vw;
-  height: 2vw;
-  margin-bottom: 28%;
-  margin-left: 17.75vw;
-}
-.edit:hover{
-  cursor: pointer;
-}
-
-.likeCount{
-  float: center;
-  margin-right: 22.75%;
-  font-size: 1.1vw;
-}
-
-.replyCount{
-  float: left;
-  margin-left: 20%;
-  font-size: 1.1vw;
-}
-
-.retweetCount{
-  float: right;
-  margin-right: 18%;
-  font-size: 1.1vw;
-}
-
-.post{
-  width: 4.5vw;
-  height: 4.5vw;
-  float: left;
-  margin-top: 3.5vw;
-  margin-left: 48vw;
-}
-
-.post:hover{
-  cursor: pointer;
-}
-
-.tweetText{
-  font-size: 2vw;
-  margin-left: 5%;
-}
-
-.tweetID{
-  float:right;
-  font-size: 1.1vw;
-  margin-right: 1%
-}
-
-.author{
-  float:left;
-  font-size: 1.1vw;
-  margin-left: 1%;
-}
-
-.postBackground{
-  background-color: grey;
-  opacity: 50%;
-  width: 200vh;
-  height: 100vh;
-  margin-top: -23.1vh;
-  position: relative;
-}
-
-.formBackground {
-  border-radius: 10px;
-  height: 90%;
-  width: 40%;
+  top: -75vh;
+  left: 41vw;
   background-color: white;
-  position: absolute;
-  top: 5%;
-  right: 30%;
+  border-radius: 10px;
+  width: 17.5vw;
+  height: 20vw;
+}
+
+.card-title{
+  font-size: 2vw;
   text-align: center;
 }
 
-.cancel {
-  background-color: rgb(255, 158, 158);
-  color: rgb(69, 68, 68);
-  border: None;
-  padding: 5px 10px;
+.content{
+  align-content: center;
   text-align: center;
-  font-size: 18px;
-  border-radius: 8px;
-  margin-left: 0%;
-  width: 85px;
-  height: 40px;
-  margin-top: 15px;
-  margin-right: 2%;
 }
 
-.cancel:hover {
-  background-color: rgb(250, 83, 83);
-  cursor: pointer;
+.inputLine{
+  width: 65%;
+  height: 2vw;
+  margin-top: .65vw;
+  border-radius: 5px;
+  border-width: .1vw;
 }
 
-.submit {
-  background-color: rgb(122, 254, 254);
-  color: rgb(69, 68, 68);
-  border: None;
-  padding: 5px 10px;
+.Go-Button{
+  width: 25%;
+  height: 1.5vw;
+  margin-top: 1vw;
+  background-color: rgb(100, 210, 147);
+}
+.SignUp-Button{
+  width: 25%;
+  height: 1.5vw;
+  margin-top: 1vw;
+  background-color: rgb(242, 184, 97);
+}
+.Back{
+  width: 25%;
+  height: 1.5vw;
+  margin-top: 1vw;
+  background-color: rgb(184, 184, 184);
+}
+.Submit{
+  width: 25%;
+  height: 1.5vw;
+  margin-top: 1vw;
+  background-color: rgb(100, 210, 147);
+}
+
+.errorMessage{
+  font-size: .8vw;
+  color: red;
+}
+
+.userTitle{
+  position: relative;
+  top: -95vh;
+  left: 25vw;
+  width: 50vw;
+  height: 3.5vw;
   text-align: center;
-  font-size: 18px;
-  width: 85px;
-  height: 40px;
-  border-radius: 8px;
-  margin-left: 2%;
-  margin-top: 15px;
-}
-
-.submit:hover {
-  background-color: rgb(77, 196, 211);
-  cursor: pointer;
-}
-
-textarea {
-  width: 50%;
-  padding: 5px 8px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 14px;
-  margin-top: 10%;
-  margin-bottom: 10%;
-
-}
-
-h2{
-  font-size: 3vw;
-}
-h3{
-  font-size: 1.5vw;
-}
-h4{
-  text-decoration: underline;
-}
-h5{
-  font-style: italic;
+  font-size: 2.5vw;
 }

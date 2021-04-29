@@ -4,19 +4,57 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title id="tabTitle">Final Project</title>
+        <title id="tabTitle">Login to COMP 426</title>
 
         <!-- Include links to CSS stylesheets below -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
         <link rel="stylesheet" href="styles.css" />
+
+        <!-- Firebase Stuff -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-storage.js"></script>
+
     </head>
 
     <body id="body">
-        <p>This is my final project</p>
+        <div id = "background" class = "background">
+            <img src="/Images/Background_02.jpeg" class="backgroundIMG"> 
+        </div>
+
+        <p id="userTitle" class="userTitle"></p>
+        
+        <div id="login">
+            <div class="login-card" id="login-card">
+                <div class="card-title" id="cardTitleLabel">
+                    Login
+                </div>
+
+                <br>
+
+                <div class="content">
+                    <input id="email" placeholder="Email" class="inputLine" type="email"/>
+                    <input id="password" placeholder="Password" class="inputLine" type="password"/>
+
+                    <br>
+                    <br>
+                    <button class="SignUp-Button" onclick="signup()" id="go">Sign Up</button>
+                    <button class="Go-Button" onclick="login()" id="signup">Go</button>
+
+                    <br>
+                    <br>
+                    <br>
+                    <p id="message" class="errorMessage"></p>
+                </div>
+            </div>
+        </div>
+
+
+        
         <!-- Include links to JavaScript files below -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="home.js" type="module"></script>
-        <script src="script.js"></script>
-        <script src="node_modules/axios/dist/axios.js"></script>
+        <script src="index.js"></script>
+
     </body>
 </html>

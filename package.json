@@ -1,14 +1,24 @@
 {
-  "name": "login",
+  "name": "finalproject",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
+  "dependencies": {
+    "browser-sync": "^2.26.14",
+    "firebase": "^8.4.2"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npacini/FinalProjectCOMP426.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "browser-sync": "^2.26.14"
-  }
+  "bugs": {
+    "url": "https://github.com/npacini/FinalProjectCOMP426/issues"
+  },
+  "homepage": "https://github.com/npacini/FinalProjectCOMP426#readme"
 }
