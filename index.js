@@ -12,7 +12,8 @@ var firebaseConfig = {
 
   let loggedInUser;
   let loggedInUserName;
-
+  let numCoins = 1000;
+  let background = "";
 
 function login(){
     let userEmail = document.getElementById("email").value;
@@ -23,7 +24,16 @@ function login(){
       // Signed in
       var user = userCredential.user;
       loggedInUser = user;
-      loadPage();
+      background = "white"
+
+      firebase.database().ref('background/'+loggedInUser.uid).on('value', function(snapshot){
+        if(snapshot.val().Background == "white"){
+           background = "white"
+        }else if(snapshot.val().Background == "red"){
+            background = "red"
+        }
+        loadPage();
+    });
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -43,7 +53,6 @@ function login(){
     document.getElementById("message").innerHTML =""
 }
 
-
 function signup(){
     document.getElementById("login-card").innerHTML = `
     <div class="card-title" id="cardTitleLabel">
@@ -57,7 +66,8 @@ function signup(){
     <input id="confirmPassword" placeholder="Confirm Password" class="inputLine" type="password"/>
 
     <br>
-    
+    <br>
+
     <button class="Back" onclick="back()" id="signup">Back</button>
     <button class="Submit" onclick="submitSignUp()" id="go">Submit</button>
 
@@ -120,6 +130,13 @@ function submitSignUp() {
                 var user = userCredential.user;
                 loggedInUser = user;
                 updateUser(name);
+                background = "white";
+                firebase.database().ref('background/'+loggedInUser.uid).set({
+                    Background: "white"
+                });
+                firebase.database().ref('coins/'+loggedInUser.uid).set({
+                    Coins: 1000
+                });
                 // ...
             })
             .catch((error) => {
@@ -140,10 +157,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-function loadPage(){
-    document.getElementById("userTitle").innerHTML = `Welcome, ${loggedInUser.displayName}!`;
-    document.getElementById("login").innerHTML = ``;
-}
 
 function updateUser(name){
     loggedInUser.updateProfile({
