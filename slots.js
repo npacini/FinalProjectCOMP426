@@ -29,53 +29,57 @@ function setUpSlots(){
     `;}
 
 function spin(){
-    numCoins -= 15;
-    document.getElementById("coincount").innerHTML = numCoins;
-    document.getElementById("topFooter").innerHTML=``;
+    if(numCoins >= 15){
+        numCoins -= 15;
+        document.getElementById("coincount").innerHTML = numCoins;
+        document.getElementById("topFooter").innerHTML=``;
 
-    let num1 = Math.floor((Math.random() * 10))
-    let num2 = Math.floor((Math.random() * 10))
-    let num3 = Math.floor((Math.random() * 10))
+        let num1 = Math.floor((Math.random() * 10))
+        let num2 = Math.floor((Math.random() * 10))
+        let num3 = Math.floor((Math.random() * 10))
 
-    document.getElementById("slot1").innerHTML = num1;
-    document.getElementById("slot2").innerHTML = num2;
-    document.getElementById("slot3").innerHTML = num3;
+        document.getElementById("slot1").innerHTML = num1;
+        document.getElementById("slot2").innerHTML = num2;
+        document.getElementById("slot3").innerHTML = num3;
 
-    if(num1==num2 && num1==num3){
-        numCoins += num1*75;
-        document.getElementById("topFooter").innerHTML=`
-        <div id="footer" class = "footer">
-            <p id="gainz" class="gains">$${num1*75}</p>
-        </div>
-        `;
+        if(num1==num2 && num1==num3){
+            numCoins += num1*75;
+            document.getElementById("topFooter").innerHTML=`
+            <div id="footer" class = "footer">
+                <p id="gainz" class="gains">$${num1*75}</p>
+            </div>
+            `;
+        }
+        else if(num1==num2){
+            numCoins += num1*10;
+            document.getElementById("topFooter").innerHTML=`
+            <div id="footer" class = "footer">
+                <p id="gainz" class="gains">$${num1*10}</p>
+            </div>
+            `;
+        }
+        else if(num1==num3){
+            numCoins += num1*10;
+            document.getElementById("topFooter").innerHTML=`
+            <div id="footer" class = "footer">
+                <p id="gainz" class="gains">$${num1*10}</p>
+            </div>
+            `;
+        }
+        else if(num3==num2){
+            numCoins += num2*10;
+            document.getElementById("topFooter").innerHTML=`
+            <div id="footer" class = "footer">
+                <p id="gainz" class="gains">$${num2*10}</p>
+            </div>
+            `;
+        }
+        document.getElementById("coincount").innerHTML = numCoins;
+        firebase.database().ref('coins/'+loggedInUser.uid).set({
+            Coins: numCoins
+        });
+    }else{
+        alert("Not enough coins!");
     }
-    else if(num1==num2){
-        numCoins += num1*10;
-        document.getElementById("topFooter").innerHTML=`
-        <div id="footer" class = "footer">
-            <p id="gainz" class="gains">$${num1*10}</p>
-        </div>
-        `;
-    }
-    else if(num1==num3){
-        numCoins += num1*10;
-        document.getElementById("topFooter").innerHTML=`
-        <div id="footer" class = "footer">
-            <p id="gainz" class="gains">$${num1*10}</p>
-        </div>
-        `;
-    }
-    else if(num3==num2){
-        numCoins += num2*10;
-        document.getElementById("topFooter").innerHTML=`
-        <div id="footer" class = "footer">
-            <p id="gainz" class="gains">$${num2*10}</p>
-        </div>
-        `;
-    }
-    document.getElementById("coincount").innerHTML = numCoins;
-    firebase.database().ref('coins/'+loggedInUser.uid).set({
-        Coins: numCoins
-    });
 }
 

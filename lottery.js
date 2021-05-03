@@ -129,16 +129,20 @@ function populateSquare(square){
 }
 
 function buyTicket(){
-    numCoins-= 100;
-    firebase.database().ref('coins/'+loggedInUser.uid).set({
-        Coins: numCoins
-    });
-    document.getElementById("coincount").innerHTML = numCoins;
-    document.getElementById("luckyNum").style.backgroundColor='rgb(216, 216, 216)';
-    document.getElementById("luckyNum").innerHTML='Prize';
-    document.getElementById("ticketButton").innerHTML = "";
-    potentialPrize = (Math.floor(Math.random()/.1)+1)*100;
-    colorSquares();
+    if(numCoins >= 100){
+        numCoins-= 100;
+        firebase.database().ref('coins/'+loggedInUser.uid).set({
+            Coins: numCoins
+        });
+        document.getElementById("coincount").innerHTML = numCoins;
+        document.getElementById("luckyNum").style.backgroundColor='rgb(216, 216, 216)';
+        document.getElementById("luckyNum").innerHTML='Prize';
+        document.getElementById("ticketButton").innerHTML = "";
+        potentialPrize = (Math.floor(Math.random()/.1)+1)*100;
+        colorSquares();
+    }else{
+        alert("Not enough coins!");
+    }
 }
 
 function endGame(){

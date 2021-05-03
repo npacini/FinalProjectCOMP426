@@ -78,60 +78,63 @@ function shuffleNewHand(){
 }
 
 function deal2(){
-    // pay
-    numCoins-=50;
-    document.getElementById("coincount").innerHTML = numCoins;
-    firebase.database().ref('coins/'+loggedInUser.uid).set({
-        Coins: numCoins
-    });
 
-    // reset
-    for(let i = 1; i <= 8; i++){
-        document.getElementById(`c${i}`).innerHTML=``;
-        document.getElementById(`d${i}`).innerHTML=``;
+    if(numCoins >= 50){
+        // reset
+        for(let i = 1; i <= 8; i++){
+            document.getElementById(`c${i}`).innerHTML=``;
+            document.getElementById(`d${i}`).innerHTML=``;
+        }
+
+        let url = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`;
+
+        fetch(url).then((res)=>{
+            return res.json()
+        }).then((data)=>{
+            console.log(data);
+            // pay
+            numCoins-=50;
+            document.getElementById("coincount").innerHTML = numCoins;
+            firebase.database().ref('coins/'+loggedInUser.uid).set({
+                Coins: numCoins
+            });
+
+            let card1 = data.cards[0];
+            document.getElementById("c1").innerHTML=`
+                <img src=${card1.image}>
+            `
+
+            let card2 = data.cards[1];
+            document.getElementById("c2").innerHTML=`
+                <img src=${card2.image}>
+            `
+            cardCount+=2;
+
+            document.getElementById("bjButtons").innerHTML=`
+                <button class="stand" onclick="stand()"> Stand </button>
+                <button class="hit" onclick="deal()"> Hit! </button>
+            `
+            userValue += returnValue(card1);
+            userValue += returnValue(card2);
+
+            let card3 = data.cards[2];
+            dealersFirstCard=card3.image;
+            document.getElementById("d1").innerHTML=`
+                <img src='Images/card-backing.jpeg'>
+            `
+            let card4 = data.cards[3];
+            document.getElementById("d2").innerHTML=`
+            <img src=${card4.image}>
+            `
+            dealerValue += returnValueD(card3);
+            dealerValue += returnValueD(card4);
+            dealerCardCount+=2;
+            checkCards();
+
+        });
+    }else{
+        alert("Not enough coins!");
     }
-
-    let url = `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=4`;
-
-    fetch(url).then((res)=>{
-        return res.json()
-    }).then((data)=>{
-        console.log(data);
-        let card1 = data.cards[0];
-        document.getElementById("c1").innerHTML=`
-            <img src=${card1.image}>
-        `
-
-        let card2 = data.cards[1];
-        document.getElementById("c2").innerHTML=`
-            <img src=${card2.image}>
-        `
-        cardCount+=2;
-
-        document.getElementById("bjButtons").innerHTML=`
-            <button class="stand" onclick="stand()"> Stand </button>
-            <button class="hit" onclick="deal()"> Hit! </button>
-        `
-        userValue += returnValue(card1);
-        userValue += returnValue(card2);
-
-        let card3 = data.cards[2];
-        dealersFirstCard=card3.image;
-        document.getElementById("d1").innerHTML=`
-            <img src='Images/card-backing.jpeg'>
-        `
-        let card4 = data.cards[3];
-        document.getElementById("d2").innerHTML=`
-        <img src=${card4.image}>
-        `
-        dealerValue += returnValueD(card3);
-        dealerValue += returnValueD(card4);
-        dealerCardCount+=2;
-        checkCards();
-
-
-
-    });
 }
 
 function deal(){
