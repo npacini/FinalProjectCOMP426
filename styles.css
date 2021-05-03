@@ -116,6 +116,34 @@ h2{
   margin-left: .75vw;
 }
 
+.coins2{
+  position: relative;
+  width: 2.5vw;
+  height: 2.5vw;
+  float: left;
+  top: 7.5vw;
+  left: 4.5vw;
+}
+
+.cents99{
+  position: relative;
+  width: 2.5vw;
+  height: 2.5vw;
+  float: left;
+  top: 8.5vw;
+  left: 2vw;
+}
+
+.thousand{
+  position: relative;
+  width: 2.5vw;
+  height: 2.5vw;
+  float: left;
+  top: 7.5vw;
+  left: 5vw;
+  font-size: 1.5em;
+}
+
 .coincount{
   float: left;
   font-size: 1.5vw;
@@ -282,7 +310,7 @@ h2{
   top: -60vw;
   right: 3.5vw;
   width: 18vw;
-  height: 25vw;
+  height: 35vw;
   text-align: center;
   align-content: center;
   border: .3vw rgb(103, 103, 103) solid;
@@ -312,7 +340,7 @@ h2{
   position: relative;
   float: right;
   bottom: 25vw;
-  right: -4.5vw;
+  right: 33.5vw;
 }
 
 .themeWhite{
@@ -322,7 +350,7 @@ h2{
   position: relative;
   float: right;
   bottom: 25vw;
-  right: -17.5vw;
+  right: 21.5vw;
 }
 
 .icon{
@@ -392,6 +420,15 @@ h2{
   float: left;
   width: 4vw;
   height: 4vw;
+}
+.ph{
+  position: relative;
+  float: left;
+  width: 4vw;
+  height: 4vw;
+  border: 0.2vw solid black;
+  font-size: 1vw;
+  text-align: center;
 }
 
 hr{
@@ -568,4 +605,11 @@ hr{
   bottom: 45vw;
   left: 16.5vw;
   float: left;
+}
+
+.paypal1{
+  position: relative;
+  width: 10vw;
+  margin-left: 1.8vw;
+  top: 9vw;
 }

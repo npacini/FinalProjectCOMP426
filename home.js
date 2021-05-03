@@ -17,10 +17,10 @@ function loadPage(){
             <div id="i4"></div><p class="news" id="n4">-</p><hr>
         </div>
         <select id="topics" name="topics" class="topics">
+            <option value="Lottery">Lottery</option>
             <option value="Casino">Casino</option>
             <option value="Blackjack">Blackjack</option>
             <option value="Slot Machine">Slot Machine</option>
-            <option value="Lottery">Lottery</option>
             <option value="Gambling">Gambling</option>
             <option value="Cards">Cards</option>
             <option value="Lucky">Lucky</option>
@@ -44,15 +44,12 @@ function loadPage(){
     </div>
 
     <div class="leaderboard">
-        <h1>Leaderboard</h1>
-        <h2>
-            <p id="p1">Player1</p>
-            <p id="p2">Player2</p>
-            <p id="p3">Player3</p>
-            <p id="p4">Player4</p>
-            <p id="p5">Player5</p>
+        <h1><br>Buy More Coins!</h1>
+            <img src="Images/us-dollar-coin-color.png" class="coins2"> 
+            <p class="thousand">1000 </p><br>
+            <p class="cents99">$0.99 </p>
         </h2>
-        <button onclick="update()"> update </button>
+        <div onclick="buy()" id="buy" class="paypal1"></div>
     </div>
 
     <div id="redBackground">
@@ -78,6 +75,32 @@ function loadPage(){
         document.getElementById("coincount").innerHTML = numCoins;
     });
 
+    paypal.Buttons({
+        style:{
+            shape:'pill'
+        },
+        createOrder:function(d, actions){
+            return actions.order.create({
+                purchase_units: [{
+                    amount:{
+                        value:'0.99'
+                    }
+                }]
+            })
+        }, 
+        onApprove: function(d, actions){
+            return actions.order.capture().then(function(details){
+                numCoins += 1000;
+                document.getElementById("coincount").innerHTML = numCoins;
+        
+                alert("Thank you for your purchase! You've been credited 1000 coins.");
+
+                firebase.database().ref('coins/'+loggedInUser.uid).set({
+                    Coins: numCoins
+                });
+            })
+        }
+    }).render(document.getElementById("buy"));
     search();
 }
 
@@ -152,18 +175,43 @@ function search(){
     fetch(url).then((res)=>{
         return res.json()
     }).then((data)=>{
-        let articles = data.response.docs;
-        console.log(data)
-        
-        img2.innerHTML = `<img class="photo" src=nytimes.com${articles[1].multimedia[0].url}>`
-        img2.innerHTML = `<img class="photo" src=nytimes.com${articles[1].multimedia[1].url}>`
-        img3.innerHTML = `<img class="photo" src=nytimes.com${articles[2].multimedia[1].url}>`
-        img4.innerHTML = `<img class="photo" src=nytimes.com${articles[3].multimedia[1].url}>`
+        if(data.status=="OK"){
+            let articles = data.response.docs;
+            console.log(data)
 
-        news1.innerHTML = `<a href=${articles[0].web_url} target="_blank">${articles[0].headline.main} </a>`
-        news2.innerHTML = `<a href=${articles[1].web_url} target="_blank">${articles[1].headline.main} </a>`
-        news3.innerHTML = `<a href=${articles[2].web_url} target="_blank">${articles[2].headline.main} </a>`
-        news4.innerHTML = `<a href=${articles[3].web_url} target="_blank">${articles[3].headline.main} </a>`
+            if(articles[0].multimedia.length > 0){
+                img1.innerHTML = `<img class="photo" src=https://www.nytimes.com/${articles[0].multimedia[0].url}>`
+            }else{
+                img1.innerHTML = `<div class="ph">No<br>Image</div>`
+            }
+            if(articles[1].multimedia.length > 0){
+                img2.innerHTML = `<img class="photo" src=https://www.nytimes.com/${articles[1].multimedia[0].url}>`
+            }else{
+                img2.innerHTML = `<div class="ph">No<br>Image</div>`
+            }
+            if(articles[2].multimedia.length > 0){
+                img3.innerHTML = `<img class="photo" src=https://www.nytimes.com/${articles[2].multimedia[0].url}>`
+            }else{
+                img3.innerHTML = `<div class="ph">No<br>Image</div>`
+            }
+            if(articles[3].multimedia.length > 0){
+                img4.innerHTML = `<img class="photo" src=https://www.nytimes.com/${articles[3].multimedia[0].url}>`
+            }else{
+                img4.innerHTML = `<div class="ph">No<br>Image</div>`
+            }
 
+            news1.innerHTML = `<a href=${articles[0].web_url} target="_blank">${articles[0].headline.main} </a>`
+            news2.innerHTML = `<a href=${articles[1].web_url} target="_blank">${articles[1].headline.main} </a>`
+            news3.innerHTML = `<a href=${articles[2].web_url} target="_blank">${articles[2].headline.main} </a>`
+            news4.innerHTML = `<a href=${articles[3].web_url} target="_blank">${articles[3].headline.main} </a>`
+        }else{
+            alert("Sorry, the free New York Times API only allows for 10 searches per minute!");
+        }
     })
+}
+
+function buy(){
+    let buyButton = document.getElementById("buy");
+    console.log(paypal.Buttons().render(buyButton));
+
 }
