@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "comp426-cli",
+			"path": ".."
+		},
+		{
+			"path": "ServerHost"
+		}
+	],
+	"settings": {}
+}
