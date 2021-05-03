@@ -146,24 +146,24 @@ function search(){
     let img4 = document.getElementById("i4");
 
     let topic = document.getElementById("topics").value;
-    let api = "962f27b37f754cd8be6d370d4006f819";
-    let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${api}`;
+    let api = "Kmc7ewxjY3DBzLgkmPD4GQSuK0njXjUY";
+    let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${topic}&api-key=${api}`;
 
     fetch(url).then((res)=>{
         return res.json()
     }).then((data)=>{
-        let articles = data.articles;
+        let articles = data.response.docs;
         console.log(data)
         
-        img1.innerHTML = `<img class="photo" src=${articles[0].urlToImage}>`
-        img2.innerHTML = `<img class="photo" src=${articles[1].urlToImage}>`
-        img3.innerHTML = `<img class="photo" src=${articles[2].urlToImage}>`
-        img4.innerHTML = `<img class="photo" src=${articles[3].urlToImage}>`
+        img2.innerHTML = `<img class="photo" src=nytimes.com${articles[1].multimedia[0].url}>`
+        img2.innerHTML = `<img class="photo" src=nytimes.com${articles[1].multimedia[1].url}>`
+        img3.innerHTML = `<img class="photo" src=nytimes.com${articles[2].multimedia[1].url}>`
+        img4.innerHTML = `<img class="photo" src=nytimes.com${articles[3].multimedia[1].url}>`
 
-        news1.innerHTML = `<a href=${articles[0].url} target="_blank">${articles[0].title} </a>`
-        news2.innerHTML = `<a href=${articles[1].url} target="_blank">${articles[1].title} </a>`
-        news3.innerHTML = `<a href=${articles[2].url} target="_blank">${articles[2].title} </a>`
-        news4.innerHTML = `<a href=${articles[3].url} target="_blank">${articles[3].title} </a>`
+        news1.innerHTML = `<a href=${articles[0].web_url} target="_blank">${articles[0].headline.main} </a>`
+        news2.innerHTML = `<a href=${articles[1].web_url} target="_blank">${articles[1].headline.main} </a>`
+        news3.innerHTML = `<a href=${articles[2].web_url} target="_blank">${articles[2].headline.main} </a>`
+        news4.innerHTML = `<a href=${articles[3].web_url} target="_blank">${articles[3].headline.main} </a>`
 
     })
 }
