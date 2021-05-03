@@ -149,8 +149,6 @@ function search(){
     let api = "962f27b37f754cd8be6d370d4006f819";
     let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${api}`;
 
-
-
     fetch(url).then((res)=>{
         return res.json()
     }).then((data)=>{
@@ -168,25 +166,4 @@ function search(){
         news4.innerHTML = `<a href=${articles[3].url} target="_blank">${articles[3].title} </a>`
 
     })
-}
-
-
-function update(){
-    const http = require('http').createServer();
-
-    const io = require('socket.io')(http, {
-        cors: { origin: "*" }
-    });
-
-    io.on('connection', (socket) => {
-        console.log('a user connected');
-
-        socket.on('message', (message) =>     {
-            console.log(message);
-            io.emit('message', `${socket.id.substr(0,2)} said ${message}` );   
-        });
-    });
-
-    http.listen(8080, () => console.log('listening on http://localhost:8080') );
-
 }
